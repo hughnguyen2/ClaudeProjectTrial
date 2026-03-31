@@ -9,12 +9,19 @@ Two checks run on each file pair:
 ## Project Structure
 
 ```
-logdiff/            # Main package
-  cli.py            # Entry point and argument parsing
+logdiff/            # Core comparison package
+  cli.py            # CLI entry point
   comparator.py     # Order + numeric comparison logic
   parser.py         # Log line parsing and numeric extraction
   reporter.py       # Pass/fail output (text, JSON, JUnit XML)
   config.py         # Config dataclass
+
+web/                # Web application
+  app.py            # FastAPI backend
+  static/
+    index.html      # Drag-and-drop UI
+    style.css
+    app.js
 
 tests/
   fixtures/
@@ -23,7 +30,37 @@ tests/
   test_comparator.py
   test_parser.py
 
+requirements.txt    # Web app dependencies
+start.sh            # One-command local server launcher
 pyproject.toml
+```
+
+## Web Application (local GUI)
+
+### Quickstart
+
+```bash
+./start.sh
+```
+
+Then open **http://localhost:8000** in your browser.
+
+The script automatically creates a virtual environment, installs dependencies, and starts the server. Use Ctrl+C to stop.
+
+### What you can do in the UI
+
+- **Drag and drop** a baseline file onto the left zone and a new file onto the right zone (or click to browse)
+- Set numeric **tolerance** (absolute or percentage)
+- Toggle **ignore order** or **ignore numerics** checks
+- Click **Compare files** to see a colour-coded PASS/FAIL result with per-mismatch details
+
+### Manual start (if you prefer)
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn web.app:app --reload
 ```
 
 ## Requirements

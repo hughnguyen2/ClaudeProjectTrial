@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>logdiff — Log File Comparison</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1>logdiff</h1>
+      <p class="subtitle">Compare log files for message order and numeric differences</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Drop zones -->
+    <section class="drop-row">
+      <div class="drop-zone" id="zone-baseline" data-role="baseline">
+        <div class="drop-icon">&#8681;</div>
+        <p class="drop-label">Baseline file</p>
+        <p class="drop-hint">Drag &amp; drop or <label class="browse-link" for="input-baseline">browse</label></p>
+        <input type="file" id="input-baseline" accept=".log,.txt,.out,.csv,*" hidden />
+        <div class="file-badge" id="badge-baseline" hidden></div>
+      </div>
+
+      <div class="vs-divider">VS</div>
+
+      <div class="drop-zone" id="zone-new" data-role="new">
+        <div class="drop-icon">&#8681;</div>
+        <p class="drop-label">New file</p>
+        <p class="drop-hint">Drag &amp; drop or <label class="browse-link" for="input-new">browse</label></p>
+        <input type="file" id="input-new" accept=".log,.txt,.out,.csv,*" hidden />
+        <div class="file-badge" id="badge-new" hidden></div>
+      </div>
+    </section>
+
+    <!-- Options -->
+    <section class="options-panel">
+      <h2>Options</h2>
+      <div class="options-grid">
+        <div class="option-group">
+          <label for="opt-tolerance">Absolute tolerance</label>
+          <input type="number" id="opt-tolerance" value="0" min="0" step="0.01" placeholder="0.0" />
+          <span class="option-hint">e.g. 0.1 means ±0.1 on any number</span>
+        </div>
+        <div class="option-group">
+          <label for="opt-tolerance-pct">Percentage tolerance</label>
+          <div class="pct-row">
+            <input type="number" id="opt-tolerance-pct" value="0" min="0" max="100" step="0.5" placeholder="0" />
+            <span class="pct-symbol">%</span>
+          </div>
+          <span class="option-hint">e.g. 5 means within 5% of baseline value</span>
+        </div>
+        <div class="option-group checkboxes">
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-ignore-timestamps" checked />
+            Strip timestamps before comparing
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-ignore-order" />
+            Ignore message order
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="opt-ignore-numerics" />
+            Ignore numeric values
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compare button -->
+    <div class="compare-row">
+      <button id="btn-compare" disabled>Compare files</button>
+      <span id="btn-hint" class="btn-hint">Drop both files to compare</span>
+    </div>
+
+    <!-- Results -->
+    <section class="results-panel" id="results" hidden>
+      <div class="result-header" id="result-header">
+        <span class="result-badge" id="result-badge"></span>
+        <span class="result-filenames" id="result-filenames"></span>
+      </div>
+
+      <div class="result-stats" id="result-stats"></div>
+
+      <div id="result-details"></div>
+    </section>
+
+    <!-- Loading spinner -->
+    <div class="spinner-wrap" id="spinner" hidden>
+      <div class="spinner"></div>
+      <p>Comparing…</p>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
