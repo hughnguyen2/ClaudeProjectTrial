@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip3 list:*)",
+      "Bash(pip3 install:*)",
+      "Bash(pip install:*)",
+      "Bash(python3 -m pip --version)",
+      "Bash(PYTHONPATH=. python3 -m pytest tests/ -v)",
+      "Bash(python3 -m pip install pytest -q)",
+      "Bash(PYTHONPATH=/Users/hugh/ClaudeProjectTrial python3 -m pytest tests/ -v)",
+      "Bash(PYTHONPATH=. python3 -m logdiff tests/fixtures/baseline tests/fixtures/new --tolerance-pct 0.10)",
+      "Bash(PYTHONPATH=. python3 -m logdiff tests/fixtures/baseline tests/fixtures/new --tolerance 0.0)",
+      "Bash(echo \"Exit: $?\")"
+    ]
+  }
+}

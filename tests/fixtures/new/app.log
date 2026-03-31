@@ -1,0 +1,6 @@
+2026-03-31 09:00:01 INFO  Server started on port=8080
+2026-03-31 09:00:02 INFO  Connected to database, pool_size=10
+2026-03-31 09:00:03 INFO  Processing batch size=100 items
+2026-03-31 09:00:04 INFO  Completed in 1.31s with errors=0
+2026-03-31 09:00:05 INFO  Memory usage=520 MB, cpu=47.1%
+2026-03-31 09:00:06 INFO  Queue depth=5, throughput=98.7 msg/s
